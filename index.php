@@ -44,8 +44,8 @@
         <video id="video" width="100%" height="100%" autoplay muted loop>
             <source src="https://player.vimeo.com/external/473861889.sd.mp4?s=3d04079edbfff30af1e4c04b9b0a3790b10ac349&profile_id=164&oauth2_token_id=57447761" type="video/mp4" >
         </video>
-        <h1 id="head">Science training with real results</h1>
     </div>
+    <h1 id="head">Science training with real results</h1>
 
 
     <div class="m-4" id="nev">
