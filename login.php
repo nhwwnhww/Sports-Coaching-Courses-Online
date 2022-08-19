@@ -1,17 +1,26 @@
 <?php
-  $conn = new mysqli("localhost","root","","game");
+  $conn = new mysqli("localhost","root","","fia3_website");
   $display_error = "none";
   if (isset($_POST["username"])){
     if (isset($_POST["password"])){
       $name = $_POST["username"];
       $pass = $_POST["password"];
 
-      $sql = "SELECT `username`, `password` FROM `user_table` WHERE `username` = '$name' AND `password` = '$pass'";
+      $sql = "SELECT `username`, `password` FROM `user` WHERE `username` = '$name' AND `password` = '$pass'";
 
       $result = $conn->query($sql);
 
+      $sql1 = "SELECT * FROM `user` WHERE `username` = '$name' AND `password` = '$pass'";
+
+      $result1 = $conn->query($sql1);
+      if ($result1->num_rows > 0) {
+        while ($row = $result1->fetch_assoc()) {
+          $id = $row["user_id"];
+        }
+      }
+
       if ($result->num_rows > 0) {
-          header("Location: product.php?username=$name");
+          header("Location: info.php?user_id=$id");
       }
       else{
         $display_error = "block";

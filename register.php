@@ -1,12 +1,10 @@
 <?php
-$conn = new mysqli("localhost","root","","game");
+$conn = new mysqli("localhost","root","","fia3_website");
 
 if (isset($_POST["username"])){
-  $sql = "INSERT INTO `user_table`(`username`, `real name`, `password`) VALUES ('". $_POST["username"]. "','". $_POST["realname"] ."','".$_POST["password"]."')";
+  $sql = "INSERT INTO `user`(`username`, `email`, `password`) VALUES ('". $_POST["username"]. "','". $_POST["email"] ."','".$_POST["password"]."')";
   $result = $conn->query($sql);
-
-  $sql1 = "INSERT INTO `user_level`(`name`, `level`, `spend_money`) VALUES ('".$_POST["username"]."','1','0')";
-  $result1 = $conn->query($sql1);
+  header("Location: login.php");
 }
 ?>
 
@@ -70,7 +68,7 @@ if (isset($_POST["username"])){
             <p class="head">Sign in</p>
                 <form name="submitForm" action="register.php" method="POST" onsubmit="return validateForm()">
                     <input type="text" class="input" placeholder="username" name="username">
-                    <input type="text" class="input" placeholder="realname" name="realname">
+                    <input type="text" class="input" placeholder="email" name="email">
                     <input type="password" class="input" placeholder="password" name="password">
                     <button type="submit" class="button">Create your account</button>
                 </form>
@@ -83,14 +81,14 @@ if (isset($_POST["username"])){
 <script>
   function validateForm() {
   let x = document.forms["submitForm"]["username"].value;
-  let y = document.forms["submitForm"]["realname"].value;
+  let y = document.forms["submitForm"]["email"].value;
   let z = document.forms["submitForm"]["password"].value;
   if (x == "") {
     alert("Username must be filled out");
     return false;
   }
   if (y == "") {
-    alert("realname must be filled out");
+    alert("email must be filled out");
     return false;
   }
   if (z == "") {

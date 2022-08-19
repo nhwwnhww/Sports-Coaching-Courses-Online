@@ -24,7 +24,7 @@
         <?php
 
         // Create connection
-        $conn = new mysqli("localhost", "root", "", "game");
+        $conn = new mysqli("localhost", "root", "", "fia3_website");
 
         //connect to table
         $sql = "SELECT * FROM product_table_cpu";

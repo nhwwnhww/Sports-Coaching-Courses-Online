@@ -42,16 +42,14 @@
 
     <div id="background">
         <video id="video" width="100%" height="100%" autoplay muted loop>
-            <source src="https://player.vimeo.com/external/473861889.sd.mp4?s=3d04079edbfff30af1e4c04b9b0a3790b10ac349&profile_id=164&oauth2_token_id=57447761" type="video/mp4" >
+            <source src="./video/2112531048.mp4" type="video/mp4" >
         </video>
     </div>
-    <h1 id="head">Science training with real results</h1>
-
 
     <div class="m-4" id="nev">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <img src="./img/muppets-muppet-show.gif" height="72" alt="LOGO">
+                <img src="./img/muppets-muppet-show.gif" height="72" alt="LOGO"><h1>Wei's sport hub</h1>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -59,7 +57,6 @@
                     <div class="navbar-nav ms-auto">
                         <a href="#" class="nav-item nav-link active">Home</a>
                         <a href="./product.php" class="nav-item nav-link">Programs & Challenges</a>
-                        <a href="#" class="nav-item nav-link">Our Trainers</a>
                         <a href="./login.php" class="nav-item nav-link" tabindex="-1">Member Login & register</a>
                     </div>
                 </div>
