@@ -43,5 +43,6 @@
             }
         }
     ?>
+    <a href="info.php?user_id=<?php echo $id?>">back</a>
 </body>
 </html>
