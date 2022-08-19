@@ -46,6 +46,12 @@
         }
     ?>
 
+<img src="<?php echo $img_url?>" alt="" width="75px">
+
     <a href="update_info.php?user_id=<?php echo $id?>">update</a>
+    <hr>
+    <a href="display_sport.php?user_id=<?php echo $id?>">book a sport</a>
+    <hr>
+    <a href="mentor_info.php?user_id=<?php echo $id?>">become a mentor</a>
 </body>
 </html>

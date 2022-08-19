@@ -60,17 +60,46 @@
             }
         }
     ?>
+    <img src="<?php echo $img_url?>" alt="" width="75px">
+
 
     <h1>update info</h1>
-    <form name="submitForm" action="update_info.php?user_id=<?php echo $id?>" method="POST">
-        <input type="text" class="input" placeholder="username" name="username" value="<?php $username?>">
-        <input type="text" class="input" placeholder="password" name="password" value="<?php $password?>">
-        <input type="text" class="input" placeholder="city" name="city" value="<?php $city?>">
-        <input type="text" class="input" placeholder="email" name="email" value="<?php $email?>">
-        <input type="text" class="input" placeholder="age" name="age" value="<?php $age?>">
-        <input type="text" class="input" placeholder="phone" name="phone" value="<?php $phone?>">
-        <button class="button" type="submit">update</button>
+    <form name="submitForm" action="update_info.php?user_id=<?php echo $id?>" method="POST" enctype="multipart/form-data">
+        <input type="text" class="input" placeholder="username" name="username" value="<?php echo $username?>">
+        <input type="text" class="input" placeholder="password" name="password" value="<?php echo $password?>">
+        <input type="text" class="input" placeholder="city" name="city" value="<?php echo $city?>">
+        <input type="text" class="input" placeholder="email" name="email" value="<?php echo $email?>">
+        <input type="text" class="input" placeholder="age" name="age" value="<?php echo $age?>">
+        <input type="text" class="input" placeholder="phone" name="phone" value="<?php echo $phone?>">
+        <input type="file" name="myfile"  accept="image/jpeg,image/gif,image/png"/>
+        <input type="submit" name="submit" value="Upload" />
     </form>
+
+    
+    <a href="info.php?user_id=<?php echo $id?>">back</a>
+    
+    <?php
+    if (isset($_FILES['myfile']['name'])){
+		$imgname = $_FILES['myfile']['name'];
+    $tmp = $_FILES['myfile']['tmp_name'];
+    $filepath = "./user_img/";
+    if(move_uploaded_file($tmp,$filepath.$imgname.".png")){
+        echo "upload img success";
+        $update_img_sql = "UPDATE `user` SET `img_url`='$filepath$imgname.png' WHERE `user_id` = $id ";
+        $update_img_result = $conn->query($update_img_sql);
+    }else{
+        echo "upload img error";
+    }
+
+    
+
+	echo $tmp;
+	echo '<br>';
+	echo $filepath;
+	echo '<br>';
+	echo $imgname;
+	}
+?>
 
 </body>
 </html>
