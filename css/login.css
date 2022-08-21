@@ -1,0 +1,106 @@
+*{
+    margin:0;
+    padding: 0;
+    font-family: 'Mochiy Pop One', sans-serif;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+  }
+  .main{
+    width: 350px;
+    height: 500px;
+    position: relative;
+    display: flex;
+    border-radius: 12px;
+    justify-content: center;
+    align-items: center;
+    top: 100px;
+    cursor: default;
+    background: linear-gradient(135deg, red, yellow, green);
+    animation: animate 10s linear infinite;
+  }
+  .main .body, .body span{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+  }
+  .main .body {
+    width: 325px;
+    height: 475px;
+    overflow: hidden;
+    z-index: 999;
+    background: rgb(12, 12, 12);
+    border-radius: 8px;
+    text-align: center;
+      font-family: 'Mochiy Pop One', sans-serif;
+  }
+  .head{
+    font: 900 40px '';
+    margin: 40px 0;
+    text-align: center;
+    /* 设置字体间距 */
+    letter-spacing: 5px;
+    color: #fff;
+    background: linear-gradient(135deg, red, yellow, green);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+      font-family: 'Mochiy Pop One', sans-serif;
+  }
+  .input{
+    width: 80%;
+    margin-bottom: 20px;
+    outline: none;
+    border: 0;
+    padding: 10px;
+    border-bottom: 2px solid rgb(60,60,70);
+    font: 900 16px '';
+    font-family: 'Mochiy Pop One', sans-serif;
+    border-radius: 8px;
+  }
+  
+  .button{
+    text-align: center;
+    height: 48px;
+    width: 92%;
+    padding: 8px;
+    font: 900 20px '';
+    border-radius: 10px;
+    background-image: linear-gradient(135deg, #fd79a8, #a29bfe);
+    font-family: 'Mochiy Pop One', sans-serif;
+  }
+  .button:hover{
+    background-image: linear-gradient(162deg, #fd79a8, #a29bfe,rgb(82 82 82));
+  }
+  .sign{
+    margin: 2%;
+    color: #fff;
+  }
+  
+  @keyframes animate {
+    0%{
+      filter: hue-rotate(90deg);
+    }
+    100%{
+      filter: hue-rotate(270deg);
+    }
+  }
+
+  span{
+    height: 100%;
+    width: 100%;
+    background: inherit;
+    border-radius: 100px;
+  }
+  span:first-child{
+    filter: blur(100px);
+  }
+  span:last-child{
+    filter: blur(200px);
+  }
+
+  
+    
+  
