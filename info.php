@@ -85,6 +85,16 @@
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
+             echo "<table>
+            <tr>
+                <th>mentee_id</th>
+                <th>mentor_id</th>
+                <th>sport_id</th>
+                <th>city</th>
+                <th>date</th>
+                <th>feedback</th>
+            </tr>";
+
             while ($row = $result->fetch_assoc()) {
                 $mentee_id = $row["mentee_id"];
                 $mentor_id = $row["mentor_id"];
@@ -93,23 +103,16 @@
                 $date = $row["date"];
                 $feedback = $row["feedback"];
 
-                echo "<hr>";
-                echo "<h3>mentee_id</h3>";
-                echo $mentee_id;
-                echo "<br>";
-                echo "<h3>mentor_id</h3>";
-                echo $mentor_id;
-                echo "<br>";
-                echo "<h3>sport_id</h3>";
-                echo $sport_id;
-                echo "<br>";
-                echo $city;
-                echo "<br>";
-                echo $date;
-                echo "<br>";
-                echo $feedback;
-                echo "<hr>";
+                echo "<tr>";
+                echo "<td>".$mentee_id."</td>";
+                echo "<td>".$mentor_id."</td>";
+                echo "<td>".$sport_id."</td>";
+                echo "<td>".$city."</td>";
+                echo "<td>".$date."</td>";
+                echo "<td>".$feedback."</td>";
+                echo "</tr>";
             }
+            echo "</table>";
         }
     ?>
 
