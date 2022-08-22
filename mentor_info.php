@@ -13,6 +13,19 @@
 
         $id = $_GET['user_id'];
 
+        $sql = "SELECT * FROM `user` WHERE `user_id` = '$id'";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $city = $row["city"];
+                if ($city = ' '){
+                    echo "<script>alert('We need your current Location to set a session')</script>";
+                    echo "<script>alert('please update you city information')</script>";
+                }
+            }
+        }
+
         $sql = "SELECT * FROM `mentor_session` WHERE `mentor_id` = '$id'";
         $result = $conn->query($sql);
 

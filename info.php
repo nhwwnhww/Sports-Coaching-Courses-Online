@@ -1,3 +1,10 @@
+<!-- php debug -->
+<?php 
+    function debug_to_console($data) {
+        echo "<script>console.log('Debug log: " . json_encode($data) . "' );</script>";
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,22 +63,65 @@
 
         <?php
 
+        $sql = "SELECT * FROM `sport`";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $sport_list = array();
+            while ($row = $result->fetch_assoc()) {
+                $sport_id = $row["sport_id"];
+                $sport_name = $row["sport_name"];
+                $img_url = $row["img_url"];
+                $sport_describe = $row["sport_describe"];
+                $sport_max_level = $row["sport_max_level"];
+                $sport_book_time = $row["sport_book_time"];
+                $sport_max_participate = $row["sport_max_participate"];
+
+                $temp_array = array($sport_id=>array(
+                    'sport_name'=>$sport_name,
+                    'img_url'=>$img_url,
+                    'sport_describe'=>$sport_describe,
+                    'sport_max_level'=>$sport_max_level,
+                    'sport_book_time'=>$sport_book_time,
+                    'sport_max_participate'=>$sport_max_participate));
+                array_push($sport_list, $temp_array);
+            }
+        }
+
+        // $find = array_column($sport_list, '1');
+
+        // $bar = "-----------";
+
+        // debug_to_console($sport_list);
+        // debug_to_console($bar);
+        // debug_to_console($find);
+        // debug_to_console($bar);
+        // debug_to_console($find[0]['sport_name']);
+
+
         $sql = "SELECT * FROM `skill` WHERE `user_id` = '$id'";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
+            echo "<table>
+            <tr>
+                <th>sport_id</th>
+                <th>sport_name</th>
+                <th>level</th>
+            </tr>";
             while ($row = $result->fetch_assoc()) {
                 $sport_id = $row["sport_id"];
                 $sport_level = $row["sport_level"];
 
-                echo '<hr>';
-                echo 'sport_id: ';
-                echo $sport_id;
-                echo '<br>';
-                echo 'sport_level: ';
-                echo $sport_level;
-                echo '<hr>';
+                $find = array_column($sport_list, $sport_id);
+
+                echo '<tr>';
+                echo "<td>".$sport_id."</td>";
+                echo "<td>".$find[0]['sport_name']."</td>";
+                echo "<td>".$sport_level."</td>";
+                echo '<tr>';
             }
+            echo "</table>";
         }
     ?>
 

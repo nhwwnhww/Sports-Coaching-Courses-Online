@@ -13,22 +13,27 @@
         $id = $_GET['user_id'];
         $city = $_GET['city'];
 
+        $sql = "SELECT `city` FROM `user` WHERE `user_id` = $id ";
+        $result = $conn->query($sql);
+
         $sport = $_POST["sport"];
         $day = $_POST["date"];
         $time = $_POST["time"];
         $date = $day . '-'.$time;
 
+
         $sql = "INSERT INTO `mentor_session`(`sport_id`, `mentor_id`, `city`, `date`) VALUES ('$sport','$id','$city','$date')";
         $result = $conn->query($sql);
         header("Location: mentor_info.php?user_id=$id");
 
-        echo $id;
-        echo '<br>';
-        echo $city;
-        echo '<br>';
-        echo $sport;
-        echo '<br>';
-        echo $date;
+        // echo $id;
+        // echo '<br>';
+        // echo $city;
+        // echo '<br>';
+        // echo $sport;
+        // echo '<br>';
+        // echo $date;        
+
     ?>
 </body>
 </html>
