@@ -171,5 +171,7 @@
     <a href="mentor_info.php?user_id=<?php echo $id?>">become a mentor</a>
     <hr>
     <a href="index.php">log out</a>
+    <hr>
+    <a href="./input_game_info.php?user_id=<?php echo $id?>">Find a friendly game</a>
 </body>
 </html>

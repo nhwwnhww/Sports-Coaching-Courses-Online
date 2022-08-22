@@ -1,10 +1,16 @@
+<!-- php debug -->
+<?php 
+    function alert($data) {
+        echo "<script>alert(json_encode($data));</script>";
+    }
+?>
 <?php
 $conn = new mysqli("localhost","root","","fia3_website");
 
 if (isset($_POST["username"])){
-  $sql = "INSERT INTO `user`(`username`, `email`, `password`) VALUES ('". $_POST["username"]. "','". $_POST["email"] ."','".$_POST["password"]."')";
-  $result = $conn->query($sql);
-  header("Location: login.php");
+    $sql = "INSERT INTO `user`(`username`, `email`, `password`) VALUES ('". $_POST["username"]. "','". $_POST["email"] ."','".$_POST["password"]."')";
+    $result = $conn->query($sql);
+    header("Location: login.php");  
 }
 ?>
 
@@ -83,18 +89,26 @@ if (isset($_POST["username"])){
   let x = document.forms["submitForm"]["username"].value;
   let y = document.forms["submitForm"]["email"].value;
   let z = document.forms["submitForm"]["password"].value;
+
+    alert(x);
+    alert(y);
+    alert(z);
+
+
+  var reg = /^[0-9a-zA-Z_.-]+[@][0-9a-zA-Z_.-]+([.][a-zA-Z]+){1,2}$/;
   if (x == "") {
     alert("Username must be filled out");
     return false;
   }
-  if (y == "") {
-    alert("email must be filled out");
+  else if (y == ""){
+    alert("Email must be filled out");
     return false;
   }
-  if (z == "") {
-    alert("password must be filled out");
+  else if (z == "") {
+    alert("Password must be filled out");
     return false;
   }
+  
 }
 </script>
 </body>
