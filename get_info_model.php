@@ -22,12 +22,13 @@
     <?php 
         $conn = new mysqli("localhost","root","","fia3_website");
 
+        // get sport info model
+
         $sql = "SELECT * FROM `sport`";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             $sport_list = array();
-            $sport_id_list = array();
             while ($row = $result->fetch_assoc()) {
                 $sport_id = $row["sport_id"];
                 $sport_name = $row["sport_name"];
@@ -45,22 +46,43 @@
                     'sport_book_time'=>$sport_book_time,
                     'sport_max_participate'=>$sport_max_participate));
                 array_push($sport_list, $temp_array);
-                array_push($sport_id_list,$sport_id);
             }
         }
 
         echo "<table>
         <tr>
-            <th>sport_id</th>
+            <th>sport_name</th>
+            <th>sprot_url</th>
+            <th>sport_describe</th>
+            <th>sport_max_level</th>
+            <th>sport_max_participate</th>
         </tr>";
+        
+        // debug(sizeof($sport_list));
 
-            debug($sport_list);
+        for ($i = 0; $i < sizeof($sport_list); $i++){
+            $sport_name = $sport_list[$i][$i+1]['sport_name'];
+            $sprot_url = $sport_list[$i][$i+1]['img_url'];
+            $sport_describe = $sport_list[$i][$i+1]['sport_describe'];
+            $sport_max_level = $sport_list[$i][$i+1]['sport_max_level'];
+            $sport_max_participate = $sport_list[$i][$i+1]['sport_max_participate'];
+            
+            echo "<tr>";
 
-            foreach($sport_id_list as $id){
-                echo '<tr>';
-                echo "<td>".$sport_list['1']['1']."</td>";
-                echo '<tr>';
-            }
+            echo "<td>$sport_name</td>";
+
+            echo "<td><img src='$sprot_url'></td>";
+
+            echo "<td>$sport_describe</td>";
+
+            echo "<td>$sport_max_level</td>";
+
+            echo "<td>$sport_max_participate</td>";
+
+            echo "</tr>";
+        }
+        ;
+
         echo "</table>";
     ?>
 </body>
