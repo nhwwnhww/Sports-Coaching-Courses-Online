@@ -35,7 +35,7 @@
             <option value="create">Create a match</option>
         </select>
         <br>
-        <input type="submit" name="submit" value="Upload" />
+        <input type="submit" name="submit" value="submit" />
     </form>
     <a href="info.php?user_id=<?php echo $id?>">back</a>
 </body>

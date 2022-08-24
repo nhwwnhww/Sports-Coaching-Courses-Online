@@ -32,6 +32,7 @@
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
+            $display_city_required = 'block';
             while ($row = $result->fetch_assoc()) {
                 $user_id = $row["user_id"];
                 $username = $row["username"];
@@ -41,6 +42,10 @@
                 $email = $row["email"];
                 $age = $row["age"];
                 $phone = $row["phone"];
+
+                if (!$city == ""){
+                    $display_city_required = 'none';
+                };
 
             }
         }
@@ -178,7 +183,6 @@
                 echo "<div class='skills'>
                 <div class='charts'>
                     <div class='chart chart--dev'>
-                        <span class='chart__title'>skill</span>
                         <ul class='chart--horiz'>";
 
                 while ($row = $result->fetch_assoc()) {
@@ -202,11 +206,13 @@
             </div>";
             }
         ?>
-        <a href='display_sport.php?user_id=<?php echo $id?>'>book a sport</a>
+        <a href='display_sport.php?user_id=<?php echo $id?>' class="btn btn-primary">book a sport</a>
         <hr>
-        <a href='mentor_info.php?user_id=<?php echo $id?>'>become a mentor</a>
+        <a href='mentor_info.php?user_id=<?php echo $id?>' class="btn btn-primary">become a mentor</a>
+        <br>
+        <span style="display: <?php echo $display_city_required;?>;">You need update your city infomation to become a mentor</span>
         <hr>
-        <a href='./input_game_info.php?user_id=<?php echo $id?>'>Find a friendly game</a>
+        <a href='./Find_or_create.php?user_id=<?php echo $id?>' class="btn btn-primary">Find a friendly game</a>
         </div>
 
         <div class="col-4">
