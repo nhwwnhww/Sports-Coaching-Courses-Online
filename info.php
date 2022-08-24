@@ -24,25 +24,40 @@
     <!-- skill chart -->
     <link rel="stylesheet" href="./css/skill_chart.scss">
 
-    <style>
-        body{
-            background-color: light gray;
-        }
+    <?php 
+        $conn = new mysqli("localhost","root","","fia3_website");
 
-    </style>
+        $id = $_GET['user_id'];
+        $sql = "SELECT * FROM `user` WHERE `user_id` = '$id'";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $user_id = $row["user_id"];
+                $username = $row["username"];
+                $password = $row["password"];
+                $img_url = $row["img_url"];
+                $city = $row["city"];
+                $email = $row["email"];
+                $age = $row["age"];
+                $phone = $row["phone"];
+
+            }
+        }
+    ?>
 </head>
-<body>
+<body class="bg-secondary">
     <!-- nav -->
     <div class="m-4" id="nev">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <img src="./img/muppets-muppet-show.gif" height="72" alt="LOGO"><h1>Wei's sport hub</h1>
+                <img src="<?php echo $img_url?>" height="72" alt="LOGO"><h1><?php echo $username?></h1>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
-                        <a href="" class="nav-item nav-link"></a>
+                        <a href="" data-bs-toggle="modal" data-bs-target="#myModal" class="nav-item nav-link">personal info</a>
                         <a href="display_sport.php?user_id=<?php echo $id?>" class="nav-item nav-link">book a sport</a>
                         <a href="mentor_info.php?user_id=<?php echo $id?>" class="nav-item nav-link">become a mentor</a>
                         <a href="./input_game_info.php?user_id=<?php echo $id?>" class="nav-item nav-link">Find a friendly game</a>
@@ -53,11 +68,27 @@
         </nav>
     </div>
 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-        Personal info
-    </button>
+    <div class="row">
+        <div class="col-1">
 
-    <!--user info model -->
+        </div>
+        <div class="col-3">
+            <div class='card-wrapper bg-dark'>
+                <div class='main-window bg-dark text-white' id='main-window'>
+
+                    <div class='user-image' style="background-image: url('<?php echo $img_url?>');">
+                        <div class='username'><?php echo $username;?></div>
+                    </div>
+                    <div class='user-info' style="display: flex;margin-top: 12%;margin-left: 10%;">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" style="width:80%">
+                            More detail
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--user info model -->
     <div class="modal" id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -70,30 +101,8 @@
         
             <!-- model context -->
             <div class="modal-body">
-            <?php
-                $conn = new mysqli("localhost","root","","fia3_website");
-
-                $id = $_GET['user_id'];
-
-                $sql = "SELECT * FROM `user` WHERE `user_id` = '$id'";
-                $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        $user_id = $row["user_id"];
-                        $username = $row["username"];
-                        $password = $row["password"];
-                        $img_url = $row["img_url"];
-                        $city = $row["city"];
-                        $email = $row["email"];
-                        $age = $row["age"];
-                        $phone = $row["phone"];
-
-                    }
-                }
-                ?>
-                <div class='card-wrapper'>
-                    <div class='main-window' id='main-window'>
+                <div class='card-wrapper bg-dark'>
+                    <div class='main-window bg-dark text-white' id='main-window'>
 
                         <div class='user-image' style="background-image: url('<?php echo $img_url?>');">
                             <div class='username'><?php echo $username;?></div>
@@ -110,9 +119,6 @@
                 
             </div>
                 
-                
-                
-        
             <!-- model foot -->
             <div class="modal-footer">
                 <a href="update_info.php?user_id=<?php echo $id?>" class="btn btn-primary">update</a>
@@ -122,150 +128,148 @@
             </div>
         </div>
     </div>
+        <div class="col-3">
 
-    <div class="row">
-        <div class="col-8">
+        <!-- skill part -->
+        <?php
 
-    <!-- skill part -->
-    <?php
+            $sql = "SELECT * FROM `sport`";
+            $result = $conn->query($sql);
 
-        $sql = "SELECT * FROM `sport`";
-        $result = $conn->query($sql);
+            // sport array
+            if ($result->num_rows > 0) {
+                $sport_list = array();
+                while ($row = $result->fetch_assoc()) {
+                    $sport_id = $row["sport_id"];
+                    $sport_name = $row["sport_name"];
+                    $img_url = $row["img_url"];
+                    $sport_describe = $row["sport_describe"];
+                    $sport_max_level = $row["sport_max_level"];
+                    $sport_book_time = $row["sport_book_time"];
+                    $sport_max_participate = $row["sport_max_participate"];
 
-        // sport array
-        if ($result->num_rows > 0) {
-            $sport_list = array();
-            while ($row = $result->fetch_assoc()) {
-                $sport_id = $row["sport_id"];
-                $sport_name = $row["sport_name"];
-                $img_url = $row["img_url"];
-                $sport_describe = $row["sport_describe"];
-                $sport_max_level = $row["sport_max_level"];
-                $sport_book_time = $row["sport_book_time"];
-                $sport_max_participate = $row["sport_max_participate"];
-
-                $temp_array = array($sport_id=>array(
-                    'sport_name'=>$sport_name,
-                    'img_url'=>$img_url,
-                    'sport_describe'=>$sport_describe,
-                    'sport_max_level'=>$sport_max_level,
-                    'sport_book_time'=>$sport_book_time,
-                    'sport_max_participate'=>$sport_max_participate));
-                array_push($sport_list, $temp_array);
+                    $temp_array = array($sport_id=>array(
+                        'sport_name'=>$sport_name,
+                        'img_url'=>$img_url,
+                        'sport_describe'=>$sport_describe,
+                        'sport_max_level'=>$sport_max_level,
+                        'sport_book_time'=>$sport_book_time,
+                        'sport_max_participate'=>$sport_max_participate));
+                    array_push($sport_list, $temp_array);
+                }
             }
-        }
 
-        // $find = array_column($sport_list, '1');
+            // $find = array_column($sport_list, '1');
 
-        // $bar = "-----------";
+            // $bar = "-----------";
 
-        // debug_to_console($sport_list);
-        // debug_to_console($bar);
-        // debug_to_console($find);
-        // debug_to_console($bar);
-        // debug_to_console($find[0]['sport_name']);
+            // debug_to_console($sport_list);
+            // debug_to_console($bar);
+            // debug_to_console($find);
+            // debug_to_console($bar);
+            // debug_to_console($find[0]['sport_name']);
 
 
-        $sql = "SELECT * FROM `skill` WHERE `user_id` = '$id'";
-        $result = $conn->query($sql);
+            $sql = "SELECT * FROM `skill` WHERE `user_id` = '$id'";
+            $result = $conn->query($sql);
 
-        if ($result->num_rows > 0) {
-            echo "<div class='skills'>
-            <div class='charts'>
-                <div class='chart chart--dev'>
-                    <span class='chart__title'>Your sport skill</span>
-                    <ul class='chart--horiz'>";
+            if ($result->num_rows > 0) {
+                echo "<h1>Sport skill</h1>";
+                echo "<div class='skills'>
+                <div class='charts'>
+                    <div class='chart chart--dev'>
+                        <span class='chart__title'>skill</span>
+                        <ul class='chart--horiz'>";
 
-            while ($row = $result->fetch_assoc()) {
-                $sport_id = $row["sport_id"];
-                $sport_level = $row["sport_level"];
-                $find = array_column($sport_list, $sport_id);
-                $sport_level_width = $sport_level * 10;
-                $sport_name = $find[0]['sport_name'];
+                while ($row = $result->fetch_assoc()) {
+                    $sport_id = $row["sport_id"];
+                    $sport_level = $row["sport_level"];
+                    $find = array_column($sport_list, $sport_id);
+                    $sport_level_width = $sport_level * 10;
+                    $sport_name = $find[0]['sport_name'];
 
-                echo "$sport_name level: $sport_level";
-                echo "<li class='chart__bar' style='width: $sport_level_width%;'>";
-                echo "<span class='chart__label'>";
-                echo     "$sport_name";
-                echo "</span>";
-                echo "</li>";
-            }
-            echo "</ul>
+                    echo "$sport_name level: $sport_level";
+                    echo "<li class='chart__bar' style='width: $sport_level_width%;'>";
+                    echo "<span class='chart__label'>";
+                    echo     "$sport_name";
+                    echo "</span>";
+                    echo "</li>";
+                }
+                echo "</ul>
+                </div>
             </div>
+            
+            </div>";
+            }
+        ?>
+        <a href='display_sport.php?user_id=<?php echo $id?>'>book a sport</a>
+        <hr>
+        <a href='mentor_info.php?user_id=<?php echo $id?>'>become a mentor</a>
+        <hr>
+        <a href='./input_game_info.php?user_id=<?php echo $id?>'>Find a friendly game</a>
         </div>
-        
-        </div>";
-        }
-    ?>
 
-    <div class="col">
+        <div class="col-4">
+        <?php
 
-<?php
+                $sql = "SELECT `user_id`,`username` FROM `user`;";
+                $result = $conn->query($sql);
 
-        $sql = "SELECT `user_id`,`username` FROM `user`;";
-        $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    $user_list = array();
+                    while ($row = $result->fetch_assoc()) {
+                        $username = $row["username"];
 
-        if ($result->num_rows > 0) {
-            $user_list = array();
-            while ($row = $result->fetch_assoc()) {
-                $user_id = $row["user_id"];
-                $username = $row["username"];
+                        $temp_array = array('username'=>$username);
+                        array_push($user_list, $temp_array);
+                        // debug_to_console($user_list);
+                    }
+                };
 
-                $temp_array = array($user_id=>array(
-                    'user_id'=>$user_id,
-                    'username'=>$username,
-                ));
-                array_push($user_list, $temp_array);
-            }
-        };
+                $sql_book = "SELECT * FROM `book` WHERE `mentee_id` = $user_id";
+                $result_book = $conn->query($sql_book);
 
-        $sql = "SELECT * FROM `book` WHERE `mentee_id` = $user_id";
-        $result = $conn->query($sql);
+                if ($result_book->num_rows > 0) {
+                    echo "<h1>Session booked</h1>";
+                    echo "<table>
+                    <tr>
+                        <th>mentor_name</th>
+                        <th>sport_id</th>
+                        <th>city</th>
+                        <th>date</th>
+                        <th>feedback</th>
+                    </tr>";
 
-        if ($result->num_rows > 0) {
-             echo "<table>
-            <tr>
-                <th>mentee_id</th>
-                <th>mentor_id</th>
-                <th>sport_id</th>
-                <th>city</th>
-                <th>date</th>
-                <th>feedback</th>
-            </tr>";
+                    while ($row = $result_book->fetch_assoc()) {
+                        $mentor_id = $row["mentor_id"];
+                        $sport_id = $row["sport_id"];
+                        $city = $row["city"];
+                        $date = $row["date"];
+                        $feedback = $row["feedback"];
 
-            while ($row = $result->fetch_assoc()) {
-                $mentor_id = $row["mentor_id"];
-                $sport_id = $row["sport_id"];
-                $city = $row["city"];
-                $date = $row["date"];
-                $feedback = $row["feedback"];
+                        $find = array_column($sport_list, $sport_id);
+                        $sport_name = $find[0]['sport_name'];
 
-                $find = array_column($user_list, $mentor_id);
-                $user_list = $find[0]['username'];
+                        // debug_to_console($mentor_id);
+                        $mentor_id = intval($mentor_id) - 1;
 
-                echo "<tr>";
-                echo "<td>".$user_list."</td>";
-                echo "<td>".$sport_name."</td>";
-                echo "<td>".$city."</td>";
-                echo "<td>".$date."</td>";
-                echo "<td>".$feedback."</td>";
-                echo "</tr>";
-            }
-            echo "</table>";
-        }
-    ?>
+                        $mentor_name = $user_list[$mentor_id]["username"];
 
+                        echo "<tr>";
+                        echo "<td>".$mentor_name."</td>";
+                        echo "<td>".$sport_name."</td>";
+                        echo "<td>".$city."</td>";
+                        echo "<td>".$date."</td>";
+                        echo "<td>".$feedback."</td>";
+                        echo "</tr>";
+                    }
+                    echo "</table>";
+                }
+            ?>
+            </div>
+            <div class="col-1">
+
+        </div>
     </div>
-        </div>
-
-        </div>
-
-    <a href="display_sport.php?user_id=<?php echo $id?>">book a sport</a>
-    <hr>
-    <a href="mentor_info.php?user_id=<?php echo $id?>">become a mentor</a>
-    <hr>
-    <a href="index.php">log out</a>
-    <hr>
-    <a href="./input_game_info.php?user_id=<?php echo $id?>">Find a friendly game</a>
 </body>
 </html>
