@@ -6,15 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <?php
-                $conn = new mysqli("localhost","root","","fia3_website");
+        $conn = new mysqli("localhost","root","","fia3_website");
+        $id = $_GET['user_id'];
 
-                $id = $_GET['user_id'];
-            ?>
+        if(isset($_POST["find_create"])){
+            $find_create = $_POST["find_create"];
+            $sport_id = $_POST["sport_id"];
+            if ($find_create == "find"){
+                header("Location: mentor_info.php?user_id=$id&sport_id=$sport_id");
+            };
+            if($find_create == "create"){
+                header("Location: Create_game.php?user_id=$id&sport_id=$sport_id");
+            };
+        };
+    ?>
 </head>
 <body>
     <form name="submitForm" action="Find_or_create.php?user_id=<?php echo $id?>" method="POST">
         <label for="">sport</label>
-        <select name="sport_id" id="">
+        <select name="sport_id">
             <?php
                 $sql = "SELECT * FROM `sport`";
                 $result = $conn->query($sql);
