@@ -33,7 +33,7 @@
     <!-- user info model -->
     <link rel="stylesheet" href="./css/user_info.css">
 </head>
-<body class="bg-dark">
+<body class="bg-dark" style="overflow-x: hidden;">
     <div class="row">
     <!-- left part -->
     <div class="col container p-5 my-5 bg-dark text-dark">

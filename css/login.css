@@ -30,7 +30,6 @@
   .main .body {
     width: 325px;
     height: 475px;
-    overflow: hidden;
     z-index: 999;
     background: rgb(12, 12, 12);
     border-radius: 8px;

@@ -51,10 +51,10 @@
         }
     ?>
 </head>
-<body class="bg-secondary">
+<body class="bg-secondary" style="overflow-x: hidden;">
     <!-- nav -->
-    <div class="m-4" id="nev">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="m-10" id="nev" style="margin-bottom: 10%;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <div class="container-fluid">
                 <img src="<?php echo $img_url?>" height="72" alt="LOGO"><h1><?php echo $username?></h1>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -78,7 +78,7 @@
 
         </div>
         <div class="col-3">
-            <div class='card-wrapper bg-dark'>
+            <div class='card-wrapper bg-dark' style="width: 100%;">
                 <div class='main-window bg-dark text-white' id='main-window'>
 
                     <div class='user-image' style="background-image: url('<?php echo $img_url?>');">
@@ -216,6 +216,7 @@
         </div>
 
         <div class="col-4">
+            <!-- booked session -->
         <?php
 
                 $sql = "SELECT `user_id`,`username` FROM `user`;";
@@ -269,6 +270,66 @@
                         echo "<td>".$feedback."</td>";
                         echo "</tr>";
                     }
+                    echo "</table>";
+                }
+            ?>
+
+            <!-- game info -->
+            <?php                
+                // participate array
+                $sql = "SELECT * FROM `participate` WHERE `user_id` = $id";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    $participate = array();
+                    while ($row = $result->fetch_assoc()) {
+                        $user_id  = $row["user_id"];
+                        $sport_id  = $row["sport_id"];
+                        $sport_level = $row["sport_level"];
+                        $game_id = $row["game_id"];
+
+                        $temp_array = array($user_id=>array(
+                            'sport_id'=>$sport_id,
+                            'sport_level'=>$sport_level,
+                            'game_id'=>$game_id,));
+                        array_push($participate, $temp_array);
+                    }
+                    $find = array_column($participate, $id);
+                    echo "<h1>Matched Game</h1>";
+                    echo "<table>
+                            <tr>
+                                <th>game_id</th>
+                                <th>sport_id</th>
+                                <th>sport_average_level</th>
+                                <th>participate_number</th>
+                                <th>city</th>
+                                <th>time</th>
+                            </tr>";
+                    for ($i = 0; $i < sizeof($find);$i++){
+                        $game_id = $find[$i]['game_id'];
+                        // search game info
+                        $sql = "SELECT * FROM `game` WHERE `game_id` = $game_id";
+                        $result = $conn->query($sql);
+    
+                        if ($result->num_rows > 0) {
+                               
+                            while ($row = $result->fetch_assoc()) {
+                                $game_id = $row["game_id"];
+                                $sport_id = $row["sport_id"];
+                                $sport_average_level = $row["sport_average_level"];
+                                $participate_number = $row["participate_number"];
+                                $city = $row["city"];
+                                $time = $row["time"];
+                                echo "<tr>";
+                                echo "<td>".$game_id."</td>";
+                                echo "<td>".$sport_id."</td>";
+                                echo "<td>".$sport_average_level."</td>";
+                                echo "<td>".$participate_number."</td>";
+                                echo "<td>".$city."</td>";
+                                echo "<td>".$time."</td>";
+                                echo "</tr>";
+                            }
+                        }
+                    };
                     echo "</table>";
                 }
             ?>
