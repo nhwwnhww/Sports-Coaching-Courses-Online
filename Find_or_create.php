@@ -9,11 +9,11 @@
         $conn = new mysqli("localhost","root","","fia3_website");
         $id = $_GET['user_id'];
 
-        if(isset($_POST["find_create"])){
+    if(isset($_POST["find_create"])){
             $find_create = $_POST["find_create"];
             $sport_id = $_POST["sport_id"];
             if ($find_create == "find"){
-                header("Location: mentor_info.php?user_id=$id&sport_id=$sport_id");
+                header("Location: Find_game.php?user_id=$id&sport_id=$sport_id");
             };
             if($find_create == "create"){
                 header("Location: Create_game.php?user_id=$id&sport_id=$sport_id");

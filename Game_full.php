@@ -7,13 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
-        $conn = new mysqli("localhost","root","","fia3_website");
-        $id = $_GET['user_id'];
-    ?>
-
-    <!-- I need game info and link to info page -->
-    <!-- also balance level for game -->
-
+    
 </body>
 </html>

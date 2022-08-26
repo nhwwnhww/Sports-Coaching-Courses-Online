@@ -1,3 +1,9 @@
+<!-- php debug -->
+<?php 
+    function debug_to_console($data) {
+        echo "<script>console.log('Debug log: " . json_encode($data) . "' );</script>";
+    }
+?>
 <?php
     $conn = new mysqli("localhost","root","","fia3_website");
 
@@ -6,6 +12,7 @@
     $date = $_GET['date'];
     $mentor_id = $_GET['mentor_id'];
     $mentee_id = $_GET['mentee_id'];
+    // debug_to_console($mentor_id);
 
     $sql = "SELECT * FROM `book` WHERE `sport_id` = '$sport_id' AND `city` = '$city' AND `date` = '$date' AND `mentor_id` = '$mentor_id' AND `mentee_id` = '$mentee_id'";
     $result = $conn->query($sql);

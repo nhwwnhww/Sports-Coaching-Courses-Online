@@ -100,7 +100,7 @@
                 echo "<br>";
                 echo $date;
                 echo "<br>";
-                echo "<a href='book_session.php?sport_id=$sport_id&city=$city&date=$date&me-=ntor_id=$mentor_id&mentee_id=$user_id&sport_id=$sport_id'>book</a>";
+                echo "<a href='book_session.php?sport_id=$sport_id&city=$city&date=$date&mentor_id=$mentor_id&mentee_id=$user_id&sport_id=$sport_id'>book</a>";
                 echo "<hr>";
             }
         }
