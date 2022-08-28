@@ -117,8 +117,6 @@
 
             }
 
-
-            // need check does user have play that sport before other wise it will repeat
         }
 
         // debug_to_console($sport_level);
