@@ -53,6 +53,9 @@
                 $sport_level = $row["sport_level"];
             }
         } 
+        else{
+            $sport_level = 1;
+        }
 
         // debug_to_console($sport_list);
 
@@ -85,36 +88,36 @@
 
             // if hit max number jump to other page
 
-            if ($participate_number > $sport_max_participate){
-                header("Location: Game_full.php?user_id=$id&sport_id=$sport_id");
-            }
-
-            // insert participate (user_id sport_id sport_level game_id)
-
-            $sql = "INSERT INTO `participate`(`user_id`, `sport_id`, `sport_level`, `game_id`) VALUES ('$id','$sport_id','$sport_level','$origin_game_id')";
-            $result = $conn->query($sql);
-
-            // find all participate in this game, calculate the average level
-            $sql = "SELECT `sport_level` FROM `participate` WHERE `game_id` = $origin_game_id";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                $count=0;
-                $total_level=0;
-                while ($row = $result->fetch_assoc()) {
-                    $sport_level = $row["sport_level"];
-                    $count += 1;
-                    $total_level += $sport_level;
+                if ($participate_number > $sport_max_participate){
+                    header("Location: Game_full.php?user_id=$id&sport_id=$sport_id");
                 }
-                $average_level = $total_level / $count;
-            }
-            debug_to_console("average_level ".$average_level);
+                else{
+                    // insert participate (user_id sport_id sport_level game_id)
+
+                    $sql = "INSERT INTO `participate`(`user_id`, `sport_id`, `sport_level`, `game_id`) VALUES ('$id','$sport_id','$sport_level','$origin_game_id')";
+                    $result = $conn->query($sql);
+
+                    // find all participate in this game, calculate the average level
+                    $sql = "SELECT `sport_level` FROM `participate` WHERE `game_id` = $origin_game_id";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        $count=0;
+                        $total_level=0;
+                        while ($row = $result->fetch_assoc()) {
+                            $sport_level = $row["sport_level"];
+                            $count += 1;
+                            $total_level += $sport_level;
+                        }
+                        $average_level = $total_level / $count;
+                    }
+                    debug_to_console("average_level ".$average_level);
 
 
-            // update game info (sport_average_level ,participate_number += 1)
-            $sql = "UPDATE `game` SET `sport_average_level`='$average_level',`participate_number`='$participate_number' WHERE `game_id` = $origin_game_id";
-            $result = $conn->query($sql);
-
-
+                    // update game info (sport_average_level ,participate_number += 1)
+                    $sql = "UPDATE `game` SET `sport_average_level`='$average_level',`participate_number`='$participate_number' WHERE `game_id` = $origin_game_id";
+                    $result = $conn->query($sql);
+                    header("Location: join_game_success.php?user_id=$id");
+                }
             }
 
         }
@@ -167,5 +170,7 @@
         }
         
 ?>
+<hr>
+<a href="Find_or_create.php?user_id=<?php echo $id?>">back</a>
 </body>
 </html>
