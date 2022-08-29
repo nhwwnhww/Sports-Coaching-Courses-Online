@@ -36,7 +36,7 @@
     height: 100%;
     opacity: 0;
     backface-visibility: hidden;
-    transform: scale(3);
+    transform: scale(1.5);
     position: absolute;
     top: 0;
     left: 0;
@@ -146,19 +146,4 @@
 .product-grid .price.discount{ color: var(--main-color); }
 @media only screen and (max-width:990px){
     .product-grid{ margin-bottom: 30px; }
-}
-
-.shopping-cart {
-    display: inline-block;
-    background: url(../img/cart.png) no-repeat 0 0;
-    width: 27px;
-    height: 27px;
-    margin: 0 10px 0 0;
-}
-.trash-bin{
-    display: inline-block;
-    background: url(../img/trash-bin.png) no-repeat 0 0;
-    width: 27px;
-    height: 27px;
-    margin: 0 10px 0 0;
 }

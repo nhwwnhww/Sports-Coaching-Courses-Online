@@ -20,8 +20,6 @@
             while ($row = $result->fetch_assoc()) {
                 $city = $row["city"];
                 if ($city == ""){
-                    echo "<script>alert('We need your current Location to set a session')</script>";
-                    echo "<script>alert('please update you city information')</script>";
                     header("Location: info.php?user_id=$id");
                 }
             }
@@ -49,10 +47,6 @@
             }
         }
     ?>
-    <div>
-        <h1>Set session is unavailable now</h1>
-        <h1>Please </h1>
-    </div>
     <h1>mentee booked</h1>
     <?php
         $conn = new mysqli("localhost","root","","fia3_website");
