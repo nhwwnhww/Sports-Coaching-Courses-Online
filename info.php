@@ -60,18 +60,18 @@
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto">
-                        <a href="" data-bs-toggle="modal" data-bs-target="#myModal" class="nav-item nav-link">personal info</a>
-                        <a href="display_sport.php?user_id=<?php echo $id?>" class="nav-item nav-link">book a sport</a>
-                        <a href="mentor_info.php?user_id=<?php echo $id?>" class="nav-item nav-link">become a mentor</a>
-                        <a href="./input_game_info.php?user_id=<?php echo $id?>" class="nav-item nav-link">Find a friendly game</a>
-                        <a href="index.php" class="nav-item nav-link">log out</a>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <div class="navbar-nav ms-auto">
+                            <a href="" data-bs-toggle="modal" data-bs-target="#myModal" class="nav-item nav-link">personal info</a>
+                            <a href="display_sport.php?user_id=<?php echo $id?>" class="nav-item nav-link">book a sport</a>
+                            <a href="mentor_info.php?user_id=<?php echo $id?>" class="nav-item nav-link">become a mentor</a>
+                            <a href="./input_game_info.php?user_id=<?php echo $id?>" class="nav-item nav-link">Find a friendly game</a>
+                            <a href="index.php" class="nav-item nav-link">log out</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
-    </div>
+            </nav>
+        </div>
 
     <div class="row">
         <div class="col-1">
