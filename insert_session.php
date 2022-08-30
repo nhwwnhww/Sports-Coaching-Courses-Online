@@ -17,9 +17,7 @@
         $result = $conn->query($sql);
 
         $sport = $_POST["sport"];
-        $day = $_POST["date"];
-        $time = $_POST["time"];
-        $date = $day . '-'.$time;
+        $date = $_POST["date"];
 
 
         $sql = "INSERT INTO `mentor_session`(`sport_id`, `mentor_id`, `city`, `date`) VALUES ('$sport','$id','$city','$date')";

@@ -66,7 +66,7 @@
                             <a href="display_sport.php?user_id=<?php echo $id?>" class="nav-item nav-link">book a sport</a>
                             <a href="mentor_info.php?user_id=<?php echo $id?>" class="nav-item nav-link">become a mentor</a>
                             <a href="./input_game_info.php?user_id=<?php echo $id?>" class="nav-item nav-link">Find a friendly game</a>
-                            <a href="index.php" class="nav-item nav-link">log out</a>
+                            <a href="index.php" class="nav-item nav-link btn btn-danger text-white">log out</a>
                         </div>
                     </div>
                 </div>

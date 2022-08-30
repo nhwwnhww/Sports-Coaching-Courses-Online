@@ -90,11 +90,6 @@ if (isset($_POST["username"])){
   let y = document.forms["submitForm"]["email"].value;
   let z = document.forms["submitForm"]["password"].value;
 
-    alert(x);
-    alert(y);
-    alert(z);
-
-
   var reg = /^[0-9a-zA-Z_.-]+[@][0-9a-zA-Z_.-]+([.][a-zA-Z]+){1,2}$/;
   if (x == "") {
     alert("Username must be filled out");
