@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
     <script src="https://kit.fontawesome.com/f01a9f988f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/product.css">
+
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+    
+    <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+    
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -32,7 +34,7 @@
                     <div class="collapse navbar-collapse" style="justify-content: flex-end;" id="navbarCollapse">
                         <div class="navbar-nav ms-auto">
                             <a href="index.php" class="nav-item nav-link">Home</a>
-                            <a href="info.php?user_id=<?php echo $id?>" class="nav-item nav-link">back to info page</a>
+                            <a href="info.php?user_id=<?php echo $id?>" class="nav-item nav-link btn btn-danger text-white">back to info page</a>
                         </div>
                     </div>
                 </div>
@@ -49,7 +51,7 @@
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            echo '<div class="card-group row-cols-1 row-cols-md-2 g-4">';
+            echo '<div class="card-group row-cols-1 row-cols-md-4 g-4">';
             while ($row = $result->fetch_assoc()) {
                 $sport_id = $row["sport_id"];
                 $sport_name = $row["sport_name"];
