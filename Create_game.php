@@ -5,6 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+    
+    <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+    
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
+
 </head>
 <body>
     <?php
@@ -66,17 +73,49 @@
         }
 
     ?>
-    <form name="submitForm" action="Create_game.php?user_id=<?php echo $id?>&sport_id=<?php echo $sport_id?>" method="POST">
-        <h1>Your are creating a <?php echo $sport_name?> game</h1>
-        <br>
-        <label for="">Select a time for game</label>
-        <input type="datetime-local" name="time">
-        <br>
-        <label for="">input a location for game</label>
-        <input type="text" name="city" value="<?php echo $city;?>">
-        <br>
-        <input type="submit" name="submit" value="submit"/>
-    </form>
-    <a href="Find_or_create.php?user_id=<?php echo $id?>">back</a>
+
+    <!-- nav -->
+    <div class="m-10" id="nev" style="margin-bottom: 8%;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <div class="container-fluid">
+                <img src="./img/muppets-muppet-show.gif" height="72" alt="LOGO"><h3>Your are creating a <?php echo $sport_name?> game</h3>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                    <div class="collapse navbar-collapse" style="justify-content: flex-end;" id="navbarCollapse">
+                        <div class="navbar-nav ms-auto">
+                            <a href="index.php" class="nav-item nav-link">Home</a>
+                            <a href="Find_or_create.php?user_id=<?php echo $id?>" class="nav-item nav-link btn btn-danger text-white">back to info page</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="card position-absolute top-50 start-50 translate-middle text-center col-4">
+            <div class="card-header">
+                <h1>Create Your Game</h1>
+            </div>
+            <div class="card-body">
+                <form name="submitForm" class="g-3 needs-validation" action="Create_game.php?user_id=<?php echo $id?>&sport_id=<?php echo $sport_id?>" method="POST">
+                    <div class="input-group mb-3">    
+                        <label class="input-group-text">Select a time for game</label>
+                        <input type="datetime-local" name="time" required>
+                    </div>
+                    <div class="input-group mb-3">    
+                        <label class="input-group-text">input a location for game</label>
+                        <input type="text" name="city" value="<?php echo $city;?>" required>
+                    </div>
+                    <div class="invalid-feedback">
+                            Please set session date
+                        </div>
+                    <div class="input-group mb-3">   
+                        <input type="submit" name="submit" value="submit"/>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-muted">
+                <a href="Find_or_create.php?user_id=<?php echo $id?>" class="btn btn-danger">cancel</a>
+            </div>
 </body>
 </html>

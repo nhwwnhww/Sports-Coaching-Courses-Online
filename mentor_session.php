@@ -22,6 +22,7 @@
         $conn = new mysqli("localhost","root","","fia3_website");
 
         $user_id = $_GET['user_id'];
+        $origin_user_id = $_GET['user_id'];
         $sport_id = $_GET['sport_id'];
     ?>
 
@@ -105,13 +106,13 @@
         if ($result->num_rows > 0) {
             $user_list = array();
             while ($row = $result->fetch_assoc()) {
-                $user_id = $row["user_id"];
+                $all_user_id = $row["user_id"];
                 $username = $row["username"];
                 $img_url = $row["img_url"];
                 $age = $row["age"];
                 $phone = $row["phone"];
 
-                $temp_array = array($user_id=>array(
+                $temp_array = array($all_user_id=>array(
                     'username'=>$username,
                     'img_url'=>$img_url,
                     'age'=>$age,
@@ -159,7 +160,7 @@
                         echo 'date: '.$date;
                     echo '</div>';
                     echo "<div class='card-footer container align-self-center' id='product_info'>";
-                        echo "<a href='book_session.php?sport_id=$sport_id&city=$city&date=$date&mentor_id=$mentor_id&mentee_id=$user_id'>book</a>";
+                        echo "<a href='book_session.php?sport_id=$sport_id&city=$city&date=$date&mentor_id=$mentor_id&mentee_id=$origin_user_id'>book</a>";
                     echo '</div>';
                 echo '</div>';
                 echo '</div>';
