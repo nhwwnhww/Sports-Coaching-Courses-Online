@@ -51,7 +51,7 @@
         }
     ?>
 </head>
-<body class="bg-secondary" style="overflow-x: hidden;">
+<body class="bg-light" style="overflow-x: hidden;">
     <!-- nav -->
     <div class="m-10" id="nev" style="margin-bottom: 10%;">
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
