@@ -27,7 +27,7 @@ if (isset($_POST["username"])){
 
     <link rel="stylesheet" href="./css/login.css">
 
-  <title>Login_page</title>
+  <title>register_page</title>
   <style>
     .button{
       height: 48px;
@@ -71,14 +71,14 @@ if (isset($_POST["username"])){
   <div class="main">
       <div class="body">
             <div class="text">
-            <p class="head">Sign in</p>
+            <p class="head">Sign up</p>
                 <form name="submitForm" action="register.php" method="POST" onsubmit="return validateForm()">
                     <input type="text" class="input" placeholder="username" name="username">
                     <input type="text" class="input" placeholder="email" name="email">
                     <input type="password" class="input" placeholder="password" name="password">
                     <button type="submit" class="button">Create your account</button>
                 </form>
-                <a href="login.php">back to login page</a>
+                <a href="login.php">back to sign in page</a>
             </div>
           </div>
       <span></span>

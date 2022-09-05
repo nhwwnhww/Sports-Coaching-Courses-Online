@@ -6,7 +6,7 @@
   body {
     display: flex;
     justify-content: center;
-    background-color: black;
+    background-color: rgb(255, 255, 255);
   }
   .main{
     width: 350px;
@@ -31,7 +31,7 @@
     width: 325px;
     height: 475px;
     z-index: 999;
-    background: rgb(255, 255, 255);
+    background: rgb(235, 243, 204);
     border-radius: 8px;
     text-align: center;
       font-family: 'Mochiy Pop One', sans-serif;
@@ -42,10 +42,7 @@
     text-align: center;
     /* 设置字体间距 */
     letter-spacing: 5px;
-    color: #fff;
-    background: linear-gradient(135deg, red, yellow, green);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: rgb(0, 0, 0);
       font-family: 'Mochiy Pop One', sans-serif;
   }
   .input{
@@ -54,7 +51,7 @@
     outline: none;
     border: 0;
     padding: 10px;
-    border-bottom: 2px solid rgb(255, 255, 255);
+    border-bottom: 2px solid rgb(0, 0, 0);
     font: 900 16px '';
     font-family: 'Mochiy Pop One', sans-serif;
     border-radius: 8px;
@@ -67,11 +64,7 @@
     padding: 8px;
     font: 900 20px '';
     border-radius: 10px;
-    background-image: linear-gradient(135deg, #fd79a8, #a29bfe);
     font-family: 'Mochiy Pop One', sans-serif;
-  }
-  .button:hover{
-    background-image: linear-gradient(162deg, #fd79a8, #a29bfe,rgb(82 82 82));
   }
   .sign{
     margin: 2%;

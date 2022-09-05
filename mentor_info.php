@@ -119,6 +119,8 @@
     ?>
 </head>
 <body>
+<div class="row">
+    <div class="col">
 
     <div class='card-wrapper bg-dark' style="width:500px">
         <div class='main-window bg-dark text-white' id='main-window'>
@@ -149,6 +151,8 @@
             }
         }
         ?>
+        </div>
+        <div class="col d-flex flex-column ">
         <h1>Your session</h1>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#session">
@@ -267,8 +271,10 @@
         </div>
         </div>
         <br>
-    <a href="set_session.php?user_id=<?php echo $id?>">set a session</a>
+    <a href="set_session.php?user_id=<?php echo $id?>" class="btn btn-primary text-white me-3">set a session</a>
     <br>
-    <a href="info.php?user_id=<?php echo $id?>">back</a>
+    <a href="info.php?user_id=<?php echo $id?>" class="btn btn-danger text-white me-3">back</a>
+    </div>
+    </div>
 </body>
 </html>

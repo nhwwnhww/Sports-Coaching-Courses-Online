@@ -33,6 +33,7 @@
 
         if ($result->num_rows > 0) {
             $display_city_required = 'block';
+            $display_admin = 'visible';
             while ($row = $result->fetch_assoc()) {
                 $user_id = $row["user_id"];
                 $username = $row["username"];
@@ -42,11 +43,15 @@
                 $email = $row["email"];
                 $age = $row["age"];
                 $phone = $row["phone"];
+                $is_admin = $row["is_admin"];
 
                 if (!$city == ""){
                     $display_city_required = 'none';
                 };
 
+                if ($is_admin == ""){
+                    $display_admin = 'invisible';
+                };
             }
         }
     ?>
@@ -62,10 +67,11 @@
                 </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto">
-                            <a href="" data-bs-toggle="modal" data-bs-target="#myModal" class="nav-item nav-link btn btn-info me-2">personal info</a>
-                            <a href="display_sport.php?user_id=<?php echo $id?>" class="nav-item nav-link btn btn-info me-2">book a sport</a>
-                            <a href="mentor_info.php?user_id=<?php echo $id?>" class="nav-item nav-link btn btn-info me-2">become a mentor</a>
-                            <a href="./Find_or_create.php?user_id=<?php echo $id?>" class="nav-item nav-link btn btn-info me-2">Find a friendly game</a>
+                            <a href="admin_page.php?user_id=<?php echo $id?>" class="nav-item nav-link btn btn-primary text-light me-2 <?php echo $display_admin?>">Admin page</a>
+                            <a href="" data-bs-toggle="modal" data-bs-target="#myModal" class="nav-item nav-link btn btn-primary text-light me-2">personal info</a>
+                            <a href="display_sport.php?user_id=<?php echo $id?>" class="nav-item nav-link btn btn-primary text-light me-2">book a sport</a>
+                            <a href="mentor_info.php?user_id=<?php echo $id?>" class="nav-item nav-link btn btn-primary text-light me-2">become a mentor</a>
+                            <a href="./Find_or_create.php?user_id=<?php echo $id?>" class="nav-item nav-link btn btn-primary text-light me-2">Find a friendly game</a>
                             <a href="index.php" class="nav-item nav-link btn btn-danger text-white">log out</a>
                         </div>
                     </div>
@@ -180,7 +186,7 @@
 
             if ($result->num_rows > 0) {
                 echo "<h1>Sport skill</h1>";
-                echo "<div class='skills'>
+                echo "<div class='skills mb-5'>
                 <div class='charts'>
                     <div class='chart chart--dev'>
                         <ul class='chart--horiz'>";
@@ -238,7 +244,7 @@
 
                 if ($result_book->num_rows > 0) {
                     echo "<h1>Session booked</h1>";
-                    echo "<table>
+                    echo "<table class='table table-striped table-hover'>
                     <tr>
                         <th>mentor_name</th>
                         <th>sport_id</th>
@@ -253,21 +259,25 @@
                         $city = $row["city"];
                         $date = $row["date"];
                         $feedback = $row["feedback"];
+                        $book_id = $row["book_id"];
 
                         $find = array_column($sport_list, $sport_id);
                         $sport_name = $find[0]['sport_name'];
 
                         // debug_to_console($mentor_id);
-                        $mentor_id = intval($mentor_id) - 1;
+                        $mentor_id_array = intval($mentor_id) - 1;
 
-                        $mentor_name = $user_list[$mentor_id]["username"];
+                        $mentor_name = $user_list[$mentor_id_array]["username"];
 
                         echo "<tr>";
                         echo "<td>".$mentor_name."</td>";
                         echo "<td>".$sport_name."</td>";
                         echo "<td>".$city."</td>";
                         echo "<td>".$date."</td>";
-                        echo "<td>".$feedback."</td>";
+                        if ($feedback == ''){
+                            echo "<td><a href='./feedback.php?book_id=$book_id&user_id=$id&mentor_name=$mentor_name&sport_name=$sport_name&city=$city&date=$date'>add a feedback</a></td>";
+                        }
+                        else{echo "<td>".$feedback."</td>";};
                         echo "</tr>";
                     }
                     echo "</table>";
@@ -295,7 +305,7 @@
                     }
                     $find = array_column($participate, $id);
                     echo "<h1>Matched Game</h1>";
-                    echo "<table>
+                    echo "<table class='table table-striped table-hover'>
                             <tr>
                                 <th>game_id</th>
                                 <th>sport_id</th>

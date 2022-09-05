@@ -100,7 +100,7 @@
   <div class="main">
       <div class="body">
             <div class="text">
-            <p class="head">Login</p>
+            <p class="head">Sign in</p>
                 <form name="submitForm" action="login.php" method="POST" onsubmit="return validateForm()">
                   <input type="text" class="input" placeholder="username" name="username">
                   <input type="password" class="input" placeholder="password" name="password">
@@ -111,7 +111,7 @@
                     <p style="display: <?php echo $display_error ?>;">Error: Sorry, there is no match for that username and/or password.</p>
                   </div>
                 </div>
-            <div class="sign">Don't have account? <br><a href="register.php">Sign in here</a><br><a href="index.php">Back to home</a></div>
+            <div class="sign" style="color: black">Don't have account? <br><a href="register.php">Sign up here</a><br><a href="index.php">Back to home</a></div>
             </div>
           </div>
       <span></span>
