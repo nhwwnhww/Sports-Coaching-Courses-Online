@@ -56,14 +56,17 @@
                 </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto">
+                            <a href="index.php" class="nav-item nav-link btn btn-danger text-white me-2">log out</a>
                             <a href="./info.php?user_id=<?php echo $id?>" class="nav-item nav-link btn btn-danger text-light me-2">back</a>
-                            <a href="index.php" class="nav-item nav-link btn btn-danger text-white">log out</a>
                         </div>
                     </div>
                 </div>
             </nav>
         </div>
 
+
+        <div class="row">
+        <div class="col">
         <?php
 
 $sql = "SELECT * FROM `sport`";
@@ -119,6 +122,7 @@ if ($result_book->num_rows > 0) {
     echo "<table class='table table-striped table-hover'>
     <tr>
         <th>mentor_name</th>
+        <th>mentee_name</th>
         <th>sport_id</th>
         <th>city</th>
         <th>date</th>
@@ -127,6 +131,7 @@ if ($result_book->num_rows > 0) {
 
     while ($row = $result_book->fetch_assoc()) {
         $mentor_id = $row["mentor_id"];
+        $mentee_id = $row["mentee_id"];
         $sport_id = $row["sport_id"];
         $city = $row["city"];
         $date = $row["date"];
@@ -138,11 +143,14 @@ if ($result_book->num_rows > 0) {
 
         // debug_to_console($mentor_id);
         $mentor_id_array = intval($mentor_id) - 1;
+        $mentee_id_array = intval($mentee_id) - 1;
 
         $mentor_name = $user_list[$mentor_id_array]["username"];
+        $mentee_name = $user_list[$mentee_id_array]["username"];
 
         echo "<tr>";
         echo "<td>".$mentor_name."</td>";
+        echo "<td>".$mentee_name."</td>";
         echo "<td>".$sport_name."</td>";
         echo "<td>".$city."</td>";
         echo "<td>".$date."</td>";
@@ -152,7 +160,8 @@ if ($result_book->num_rows > 0) {
     echo "</table>";
 }
 ?>
-
+</div>
+<div class="col">
 <!-- game info -->
 <?php                
 // participate array
@@ -187,6 +196,7 @@ if ($result->num_rows > 0) {
     echo "</table>";
 }
 ?>
+</div>
 </div>
 </body>
 </html>

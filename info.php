@@ -49,7 +49,7 @@
                     $display_city_required = 'none';
                 };
 
-                if ($is_admin == ""){
+                if ($is_admin == "" | $is_admin == "0"){
                     $display_admin = 'invisible';
                 };
             }

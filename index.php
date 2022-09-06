@@ -64,5 +64,9 @@
         </nav>
     </div>
 
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <a href="./login.php" class="btn btn-light text-black rounded-pill shadow p-3 mb-5 bg-body rounded"><p class="h1">Get start!!</p></a>
+    </div>
+
 </body>
 </html>
