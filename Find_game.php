@@ -11,6 +11,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+    
+    <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+    
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <?php
@@ -136,8 +143,9 @@
         }
 
         if ($result->num_rows > 0) {
+            echo "<div class='position-absolute top-50 start-50 translate-middle text-center'>";
             echo "<h1>Session booked</h1>";
-                    echo "<table>
+                    echo "<table class='table table-striped table-hover col-8'>
                     <tr>
                         <th>game_id</th>
                         <th>sport_id</th>
@@ -145,6 +153,7 @@
                         <th>participate_number</th>
                         <th>city</th>
                         <th>time</th>
+                        <th>Join it?</th>
                     </tr>";
             while ($row = $result->fetch_assoc()) {
                 $game_id = $row["game_id"];
@@ -162,15 +171,28 @@
                         echo "<td>".$participate_number."</td>";
                         echo "<td>".$city."</td>";
                         echo "<td>".$time."</td>";
-                        echo "<td>"."<a href='Find_game.php?user_id=$id&sport_id=$sport_id&game_id=$game_id'>Join this game</a>"."</td>";
+                        echo "<td>"."<a class='btn btn-primary' href='Find_game.php?user_id=$id&sport_id=$sport_id&game_id=$game_id'>Join this game</a>"."</td>";
                         echo "</tr>";
 
             }
             echo "</table>";
+            echo "<a href='Find_or_create.php?user_id=$id' class='btn btn-danger'>Cancel</a>";
+            echo "</div>";
+
+
+        }
+        else {
+            echo "<div class='position-absolute top-50 start-50 translate-middle text-center'>";
+
+            echo "<h1>Couldn't find a game that matches you</h1>";
+            echo "<h1>Would you like to create one?</h1>";
+            echo "<a class='btn btn-primary me-4' href='Create_game.php?user_id=$id&sport_id=$sport_id'>Create it</a>";
+            echo "<a class='btn btn-danger' href='Find_or_create.php?user_id=$id'>Cancel</a>";
+
+            echo "</div>";
+
         }
         
 ?>
-<hr>
-<a href="Find_or_create.php?user_id=<?php echo $id?>">back</a>
 </body>
 </html>

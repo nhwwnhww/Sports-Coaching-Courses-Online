@@ -58,6 +58,11 @@
                 $img_url = $row["img_url"];
                 $sport_describe = $row["sport_describe"];
                 $sport_book_time = $row["sport_book_time"];
+
+                if ($sport_book_time == ''){
+                    $sport_book_time=0;
+                }
+
                 $sport_max_participate = $row["sport_max_participate"];
 
                 echo "<div class='col'>";
